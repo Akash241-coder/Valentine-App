@@ -2,18 +2,18 @@ $envFile = ".env"
 $outputFile = "scripts/env.js"
 
 $content = Get-Content $envFile
-$js = "window.ENV = {`n"
+$lines = @()
 
 foreach ($line in $content) {
     if ($line -match "=") {
         $parts = $line.Split("=")
         $key = $parts[0].Trim()
         $value = $parts[1].Trim()
-        $js += "  $key: `"$value`",`n"
+        $lines += "  $($key): `"$value`""
     }
 }
 
-$js += "};"
+$js = "window.ENV = {`n" + ($lines -join ",`n") + "`n};"
 $js | Out-File -Encoding utf8 $outputFile
 
-Write-Host "✅ env.js generated!"
+Write-Host "✅ env.js generated successfully!"
