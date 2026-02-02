@@ -1,7 +1,7 @@
 body {
   background: pink;
-  font-family: Arial, sans-serif;
   text-align: center;
+  font-family: Arial, sans-serif;
   overflow: hidden;
 }
 
@@ -9,24 +9,18 @@ body {
   margin-top: 100px;
 }
 
-.buttons {
-  margin-top: 30px;
-}
-
 button {
   padding: 15px 30px;
   font-size: 20px;
-  margin: 10px;
+  border-radius: 10px;
+  border: none;
   background: red;
   color: white;
-  border: none;
-  border-radius: 10px;
   cursor: pointer;
-  position: relative;
+  margin: 10px;
 }
 
 .photo {
   width: 300px;
   border-radius: 20px;
-  margin: 20px 0;
 }
