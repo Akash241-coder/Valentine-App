@@ -1,3 +1,5 @@
+emailjs.init(CONFIG.PUBLIC_KEY);
+
 function goToLove() {
   window.location.href = 'love.html';
 }
@@ -18,10 +20,10 @@ if (noBtn) {
   });
 }
 
-// Send email using EmailJS
+// Send email
 function sendMail() {
-  emailjs.send("service_e6seyel", "template_djvyh4h", {
-    link: "https://akash241-coder.github.io/valentine"
+  emailjs.send(CONFIG.SERVICE_ID, CONFIG.TEMPLATE_ID, {
+    link: CONFIG.SITE_LINK
   }).then(() => {
     alert("Mail sent 💌");
   });
