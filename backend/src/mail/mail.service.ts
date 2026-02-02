@@ -1,8 +1,10 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+export const sendValentineMail = async (to: string) => {
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
-export const sendValentineMail = async (to: string, link: string) => {
+  const link = process.env.FRONTEND_URL;
+
   await resend.emails.send({
     from: 'Valentine 💌 <onboarding@resend.dev>',
     to,
@@ -10,7 +12,7 @@ export const sendValentineMail = async (to: string, link: string) => {
     html: `
       <h2>Hey 💌</h2>
       <p>Someone made something special for you...</p>
-      <a href="${link}" style="font-size:20px;">Click here ❤️</a>
+      <a href="${link}" style="font-size:22px;">Click here ❤️</a>
     `,
   });
 };

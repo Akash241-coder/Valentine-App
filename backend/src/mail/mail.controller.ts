@@ -5,10 +5,7 @@ import { sendValentineMail } from './mail.service';
 export class MailController {
   @Post('send-mail')
   async send(@Body() body: { email: string }) {
-    const link = process.env.SITE_URL + '/index.html';
-
-    await sendValentineMail(body.email, link);
-
+    await sendValentineMail(body.email);
     return { message: 'Mail sent 💌' };
   }
 }
