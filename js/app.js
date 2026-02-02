@@ -1,30 +1,35 @@
-emailjs.init(CONFIG.PUBLIC_KEY);
+document.addEventListener("DOMContentLoaded", () => {
+  const name = window.ENV.GIRL_NAME;
 
-function goToLove() {
-  window.location.href = 'love.html';
-}
+  document.querySelectorAll(".girl-name").forEach(el => {
+    el.textContent = name;
+  });
 
-function goToSurprise() {
-  window.location.href = 'surprise.html';
-}
+  moveNoButton();
+  floatingHearts();
+});
 
-// No button runs away
-const noBtn = document.getElementById('noBtn');
-if (noBtn) {
-  noBtn.addEventListener('mouseover', () => {
+function moveNoButton() {
+  const noBtn = document.getElementById("noBtn");
+  if (!noBtn) return;
+
+  noBtn.addEventListener("mouseover", () => {
     const x = Math.random() * (window.innerWidth - 100);
     const y = Math.random() * (window.innerHeight - 50);
-    noBtn.style.position = 'absolute';
     noBtn.style.left = `${x}px`;
     noBtn.style.top = `${y}px`;
   });
 }
 
-// Send email
-function sendMail() {
-  emailjs.send(CONFIG.SERVICE_ID, CONFIG.TEMPLATE_ID, {
-    link: CONFIG.SITE_LINK
-  }).then(() => {
-    alert("Mail sent 💌");
-  });
+function floatingHearts() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+  }, 300);
 }
